@@ -8,7 +8,7 @@ public class GameManager implements IOManager{
 	
 	private Map<String, Stage> stageList = new HashMap<String, Stage>();
 	
-	private boolean gamePlay = true;
+	public static boolean gamePlay = true;
 	
 	public static String currnetStage = "";
 	public static String nextStage = "";
@@ -28,19 +28,23 @@ public class GameManager implements IOManager{
 	} 
 	
 	private void changeStage() { // 스테이지 변경 메소드
-		String stageInfo = String.format("<< Now: %s → Next: %s >>", currnetStage, nextStage);
+		String stageInfo = String.format(" << Now: %s → Next: %s >>\n", currnetStage, nextStage);
 		
 		IOManager.append(stageInfo);
 
 		currnetStage = nextStage;
 		
 		Stage stage = stageList.get(currnetStage);
+		
+		while(true) {
+			stage.start();
+			break;
+		}
 	}
 	
 	public void run() { // 게임 실행 메소드
 		while(gamePlay) {
 			changeStage();
-			break;
 		}
 		
 	}
