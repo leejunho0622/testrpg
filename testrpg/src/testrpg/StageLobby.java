@@ -7,8 +7,8 @@ public class StageLobby extends Stage {
 	@Override
 	public void start() {
 		try {
-			String textTitle = String.format("============ LOBBY ============\n   [1] 전투  [2] 설정  [3] 종료\n");
-			IOManager.append(textTitle);
+			String textLobby = String.format("============ LOBBY ============\n   [1] 전투  [2] 설정  [0] 종료\n");
+			IOManager.append(textLobby);
 
 			String input = reader.readLine();
 			int select = Integer.parseInt(input);
@@ -17,7 +17,7 @@ public class StageLobby extends Stage {
 				GameManager.nextStage = "BATTLE";
 			else if (select == 2)
 				GameManager.nextStage = "SETTING";
-			else if (select == 3)
+			else if (select == 0)
 				GameManager.gamePlay = false;
 
 		} catch (Exception e) {
