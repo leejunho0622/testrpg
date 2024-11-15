@@ -34,6 +34,14 @@ public abstract class Unit {
 		this.def = def;
 		this.exp = exp;
 	}
+
+	public void joinParty() {
+		this.party = true;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
 	
 	public void printStatus() {
 		damageBouns = 0; armorBouns = 0; hpBouns = 0; mpBouns = 0;
