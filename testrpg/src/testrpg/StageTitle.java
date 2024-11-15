@@ -14,8 +14,9 @@ public class StageTitle extends Stage{
 
 			String input = reader.readLine();
 
-			if (input.equals("시작"))
+			if (input.equals("시작")) {
 				GameManager.nextStage = "LOBBY";
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
