@@ -13,18 +13,18 @@ public class StageSetting extends Stage{
 			String input = reader.readLine();
 			int select = Integer.parseInt(input);
 
-			if (select == 1)
-				guild();
-			else if (select == 2)
-				shop();
-			else if (select == 3)
-				inventory();
-			else if (select == 4)
-				save();
-			else if (select == 5)
-				load();
-			else if (select == 0)
-				GameManager.gamePlay = false;
+//			if (select == 1)
+//				guild();
+//			else if (select == 2)
+//				shop();
+//			else if (select == 3)
+//				inventory();
+//			else if (select == 4)
+//				save();
+//			else if (select == 5)
+//				load();
+//			else if (select == 0)
+//				GameManager.gamePlay = false;
 
 		} catch (Exception e) {
 			e.printStackTrace();
