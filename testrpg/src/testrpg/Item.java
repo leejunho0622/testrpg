@@ -1,24 +1,38 @@
 package testrpg;
 
 public class Item {
-	  public final int WEAPON = 1;
-	  public final int ARMOR = 2;
-	  public final int RING = 3;
-	  
-	  public final int TYPE_DAMAGE = 1;
-	  public final int TYPE_HP = 2;
-	  public final int TYPE_MP = 3;
-	  public final int TYPE_ARMOR = 4;
-	  
-	  int type;
-	  String name;
-	  int power;
-	  int price;
+	private final String WEAPON = "WEAPON";
+	private final String ARMOR = "ARMOR";
+	private final String ARTIFACT = "ARTIFACT";
 
-	  public void setItem(int type, String name, int power, int price) {
+	public static final int TYPE_DAMAGE = 1;
+	public static final int TYPE_HP = 2;
+	public static final int TYPE_MP = 3;
+	public static final int TYPE_ARMOR = 4;
+
+	private String type;
+	private String name;
+	private int effect;
+	private int value;
+	private int price;
+
+	public void setItem(String type, int effect, String name, int value, int price) {
 		this.type = type;
 		this.name = name;
-		this.power = power;
+		this.effect = effect;
+		this.value = value;
 		this.price = price;
-	  }
+	}
+	
+	public String getItemType() {
+		return this.type;
+	}
+	
+	public int getItemEffect() {
+		return this.effect;
+	}
+	
+	public int getItemValue() {
+		return this.value;
+	}
 }
