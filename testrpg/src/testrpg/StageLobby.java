@@ -8,22 +8,26 @@ public class StageLobby extends Stage {
 	
 	private boolean selectJob() {
 		try {
-			String selectJob = String.format("원하시는 직업을 입력하세요 [1. 전사 2. 마법사 3. 힐러]\n");
+			String selectJob = String.format("원하시는 직업을 입력하세요 [전사, 마법사, 힐러]\n");
 			IOManager.append(selectJob);
 			
 			String input = reader.readLine();
-
-			if(input.equals("전사"))
+			
+			if (input.equals("전사"))
 				Guild.setGuildPlayer(new Player("플레이어", "전사", 1, 1200, 100, 50, 50, 0));
-			else if(input.equals("마법사"))
+			else if (input.equals("마법사"))
 				Guild.setGuildPlayer(new Player("플레이어", "마법사", 1, 1000, 300, 70, 30, 0));
-			else if(input.equals("힐러"))
+			else if (input.equals("힐러"))
 				Guild.setGuildPlayer(new Player("플레이어", "힐러", 1, 1100, 200, 30, 70, 0));
 			else
 				return false;
+			
+			Guild.setUser();
+			
 		} catch (IOException e) {
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -47,7 +51,6 @@ public class StageLobby extends Stage {
 				GameManager.gamePlay = false;
 
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 }
