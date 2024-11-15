@@ -29,7 +29,9 @@ public abstract class Unit {
 		this.job = job;
 		this.level = level;
 		this.hp = hp;
+		this.maxHp = hp;
 		this.mp = mp;
+		this.maxMp = mp;
 		this.damage = damage;
 		this.def = def;
 		this.exp = exp;
@@ -39,11 +41,23 @@ public abstract class Unit {
 		this.party = true;
 	}
 	
+	public boolean isParty() {
+		return this.party;
+	}
+	
 	public String getName() {
 		return this.name;
 	}
 	
-	public void printStatus() {
+	public int getHp() {
+		return this.hp;
+	}
+	
+	public void setHp() {
+		this.hp = hp;
+	}
+	
+	private void calculateAdditonalValue() {
 		damageBouns = 0; armorBouns = 0; hpBouns = 0; mpBouns = 0;
 	    if(weapon != null) { damageBouns += weapon.getItemValue(); }
 	    if(armor != null) { armorBouns += armor.getItemValue(); }
@@ -55,7 +69,10 @@ public abstract class Unit {
 	    	else if(artifactEffect == Item.TYPE_HP) { hpBouns += arifactValue; }
 	    	else if(artifactEffect == Item.TYPE_MP) { mpBouns += arifactValue; }
 	    }
-	    	
+	}
+	
+	public void printStatus() {
+		calculateAdditonalValue();
 		String status = "";
 		status += String.format("[이름 : %s]\n[직업 : %s]\n[레벨 : %d]\n", name, job, level);
 		status += String.format("[체력 : %d +%d / %d +%d]\n[마나 : %d +%d / %d +%d]\n", hp, hpBouns, maxHp, hpBouns, mp, mpBouns, maxMp, mpBouns);
@@ -65,4 +82,22 @@ public abstract class Unit {
 	}
 	
 	public void printEquitedItem() {}
+	
+	public void attack(Monster target) {
+		calculateAdditonalValue();
+		int monsterHp = target.getHp() - (damage + damageBouns);
+		String damageLog = String.format("[%d]가 [%s]에게 %d의 데미지를 입힙니다. ", name, target.getName(), damage + damageBouns);
+		IOManager.append(damageLog);
+		if (monsterHp <= 0) {
+			String.format("[%s]을(를) 처치했습니다.", target.getName());
+			target.setHp(0);
+		}
+		target.setHp(monsterHp);
+	}
+	
+	@Override
+	public String toString() {
+		calculateAdditonalValue();
+		return String.format("[%s:%s|HP:%d/%d|MP:%d/%d]\n", name, job, hp, maxHp, mp, maxMp);
+	}
 }
