@@ -49,6 +49,10 @@ public abstract class Unit {
 		return this.name;
 	}
 	
+	public String getjob() {
+		return this.job;
+	}
+	
 	public int getHp() {
 		return this.hp;
 	}
