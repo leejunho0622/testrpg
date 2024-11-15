@@ -53,7 +53,7 @@ public abstract class Unit {
 		return this.hp;
 	}
 	
-	public void setHp() {
+	public void setHp(int hp) {
 		this.hp = hp;
 	}
 	
